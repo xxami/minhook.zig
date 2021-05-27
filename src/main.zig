@@ -53,11 +53,11 @@ const MH_ALL_HOOKS = NULL;
 
 // Initialize the MinHook library. You must call this function EXACTLY ONCE
 // at the beginning of your program.
-pub extern fn MH_Initialize() callconv(WINAPI) MH_STATUS;
+pub extern fn MH_Initialize() callconv(Stdcall) MH_STATUS;
 
 // Uninitialize the MinHook library. You must call this function EXACTLY
 // ONCE at the end of your program.
-pub extern fn MH_Uninitialize() callconv(WINAPI) MH_STATUS;
+pub extern fn MH_Uninitialize() callconv(Stdcall) MH_STATUS;
 
 // Creates a hook for the specified target function, in disabled state.
 // Parameters:
@@ -68,7 +68,7 @@ pub extern fn MH_Uninitialize() callconv(WINAPI) MH_STATUS;
 //   ppOriginal  [out] A pointer to the trampoline function, which will be
 //                     used to call the original target function.
 //                     This parameter can be NULL.
-pub extern fn MH_CreateHook(pTarget: LPVOID, pDetour: LPVOID, ppOriginal: *LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_CreateHook(pTarget: LPVOID, pDetour: LPVOID, ppOriginal: *LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Creates a hook for the specified API function, in disabled state.
 // Parameters:
@@ -81,7 +81,7 @@ pub extern fn MH_CreateHook(pTarget: LPVOID, pDetour: LPVOID, ppOriginal: *LPVOI
 //   ppOriginal  [out] A pointer to the trampoline function, which will be
 //                     used to call the original target function.
 //                     This parameter can be NULL.
-pub extern fn MH_CreateHookApi(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: *LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_CreateHookApi(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: *LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Creates a hook for the specified API function, in disabled state.
 // Parameters:
@@ -97,36 +97,36 @@ pub extern fn MH_CreateHookApi(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour:
 //   ppTarget    [out] A pointer to the target function, which will be used
 //                     with other functions.
 //                     This parameter can be NULL.
-pub extern fn MH_CreateHookApiEx(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: *LPVOID, ppTarget: *LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_CreateHookApiEx(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: *LPVOID, ppTarget: *LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Removes an already created hook.
 // Parameters:
 //   pTarget [in] A pointer to the target function.
-pub extern fn MH_RemoveHook(pTarget: LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_RemoveHook(pTarget: LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Enables an already created hook.
 // Parameters:
 //   pTarget [in] A pointer to the target function.
 //                If this parameter is MH_ALL_HOOKS, all created hooks are
 //                enabled in one go.
-pub extern fn MH_EnableHook(pTarget: LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_EnableHook(pTarget: LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Disables an already created hook.
 // Parameters:
 //   pTarget [in] A pointer to the target function.
 //                If this parameter is MH_ALL_HOOKS, all created hooks are
 //                disabled in one go.
-pub extern fn MH_DisableHook(pTarget: LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_DisableHook(pTarget: LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Queues to disable an already created hook.
 // Parameters:
 //   pTarget [in] A pointer to the target function.
 //                If this parameter is MH_ALL_HOOKS, all created hooks are
 //                queued to be disabled.
-pub extern fn MH_QueueDisableHook(pTarget: LPVOID) callconv(WINAPI) MH_STATUS;
+pub extern fn MH_QueueDisableHook(pTarget: LPVOID) callconv(Stdcall) MH_STATUS;
 
 // Applies all queued changes in one go.
-pub extern fn MH_ApplyQueued() callconv(WINAPI) MH_STATUS;
+pub extern fn MH_ApplyQueued() callconv(Stdcall) MH_STATUS;
 
 // Translates the MH_STATUS to its name as a string.
-pub extern fn MH_StatusToString(status: MH_STATUS) callconv(WINAPI) [*c]const u8;
+pub extern fn MH_StatusToString(status: MH_STATUS) callconv(Stdcall) [*c]const u8;
