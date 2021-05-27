@@ -1,7 +1,7 @@
 const std = @import("std");
 usingnamespace std.os.windows;
 
-const MH_STATUS = enum(u32) {
+const MH_STATUS = enum(i32) {
     // Unknown error. Should not be returned.
     MH_UNKNOWN = -1,
 
