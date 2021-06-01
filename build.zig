@@ -7,16 +7,18 @@ pub fn build(b: *Builder) void {
     };
 
     const mode = b.standardReleaseOptions();
-    const lib = b.addStaticLibrary("minhook", "src/main.zig");
+    const zlib = b.addStaticLibrary("minhook", "src/main.zig");
 
-    lib.addIncludeDir("src/minhook");
-    lib.addIncludeDir("src/minhook/hde");
-    lib.addCSourceFile("src/minhook/buffer.c", cflags);
-    lib.addCSourceFile("src/minhook/hook.c", cflags);
-    lib.addCSourceFile("src/minhook/trampoline.c", cflags);
-    lib.addCSourceFile("src/minhook/hde/hde64.c", cflags);
+    const clib = b.addStaticLibrary("cminhook", null);
+    clib.addIncludeDir("src/minhook");
+    clib.addIncludeDir("src/minhook/hde");
+    clib.addCSourceFile("src/minhook/buffer.c", cflags);
+    clib.addCSourceFile("src/minhook/hook.c", cflags);
+    clib.addCSourceFile("src/minhook/trampoline.c", cflags);
+    clib.addCSourceFile("src/minhook/hde/hde64.c", cflags);
+    clib.linkLibC();
     
-    lib.setBuildMode(mode);
-    lib.linkLibC();
-    lib.install();
+    zlib.setBuildMode(mode);
+    zlib.linkLibrary(clib);
+    zlib.install();
 }
