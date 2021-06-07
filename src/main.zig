@@ -68,7 +68,7 @@ pub extern fn MH_Uninitialize() MH_STATUS;
 //   ppOriginal  [out] A pointer to the trampoline function, which will be
 //                     used to call the original target function.
 //                     This parameter can be NULL.
-pub extern fn MH_CreateHook(pTarget: LPVOID, pDetour: LPVOID, ppOriginal: *LPVOID) MH_STATUS;
+pub extern fn MH_CreateHook(pTarget: LPVOID, pDetour: LPVOID, ppOriginal: ?*LPVOID) MH_STATUS;
 
 // Creates a hook for the specified API function, in disabled state.
 // Parameters:
@@ -81,7 +81,7 @@ pub extern fn MH_CreateHook(pTarget: LPVOID, pDetour: LPVOID, ppOriginal: *LPVOI
 //   ppOriginal  [out] A pointer to the trampoline function, which will be
 //                     used to call the original target function.
 //                     This parameter can be NULL.
-pub extern fn MH_CreateHookApi(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: *LPVOID) MH_STATUS;
+pub extern fn MH_CreateHookApi(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: ?*LPVOID) MH_STATUS;
 
 // Creates a hook for the specified API function, in disabled state.
 // Parameters:
@@ -97,7 +97,7 @@ pub extern fn MH_CreateHookApi(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour:
 //   ppTarget    [out] A pointer to the target function, which will be used
 //                     with other functions.
 //                     This parameter can be NULL.
-pub extern fn MH_CreateHookApiEx(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: *LPVOID, ppTarget: *LPVOID) MH_STATUS;
+pub extern fn MH_CreateHookApiEx(pszModule: LPCWSTR, pszProcName: LPCSTR, pDetour: LPVOID, ppOriginal: ?*LPVOID, ppTarget: ?*LPVOID) MH_STATUS;
 
 // Removes an already created hook.
 // Parameters:
